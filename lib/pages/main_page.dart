@@ -3,6 +3,7 @@ import 'package:trilhaapp/pages/dados_cadastrais_page.dart';
 import 'package:trilhaapp/pages/pagina1.dart';
 import 'package:trilhaapp/pages/pagina2.dart';
 import 'package:trilhaapp/pages/pagina3.dart';
+import 'package:trilhaapp/shared/widgets/custom_drawer.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -28,54 +29,7 @@ class _MainPageState extends State<MainPage> {
           backgroundColor: Theme.of(context).primaryColor,
           iconTheme: IconThemeData(color: Colors.white),
         ),
-        drawer: Drawer(
-          backgroundColor: Colors.white,
-          child: Padding(
-            padding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                InkWell(
-                  child: Container(
-                      padding: EdgeInsets.symmetric(horizontal: 0, vertical: 5),
-                      width: double.infinity,
-                      child: Text("Dados Cadastrais")),
-                  onTap: () {
-                    Navigator.pop(context);
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => DadosCadastraisPage(
-                            )));
-                  },
-                ),
-                Divider(),
-                SizedBox(
-                  height: 10,
-                ),
-                InkWell(
-                  child: Container(
-                      padding: EdgeInsets.symmetric(horizontal: 0, vertical: 5),
-                      width: double.infinity,
-                      child: Text("Configurações")),
-                  onTap: () {},
-                ),
-                Divider(),
-                SizedBox(
-                  height: 10,
-                ),
-                InkWell(
-                  child: Container(
-                      padding: EdgeInsets.symmetric(horizontal: 0, vertical: 5),
-                      width: double.infinity,
-                      child: Text("Termo de uso e privacidade")),
-                  onTap: () {},
-                ),
-                Divider(),
-              ],
-            ),
-          ),
-        ),
+        drawer: CustomDrawer(),
         body: Column(
           children: [
             Expanded(
