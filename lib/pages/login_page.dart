@@ -35,7 +35,7 @@ class _LoginPageState extends State<LoginPage> {
                     Expanded(child: Container()),
                     Expanded(
                       flex: 2,
-                      child: Image.asset("assets/images/my-wallet-logo.png"),
+                      child: Image.asset("lib/images/my-wallet-logo.png"),
                     ),
                     Expanded(child: Container()),
                   ],

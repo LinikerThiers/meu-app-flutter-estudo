@@ -47,7 +47,7 @@ class CustomDrawer extends StatelessWidget {
                 decoration: BoxDecoration(color: Colors.purple),
                 currentAccountPicture: CircleAvatar(
                   backgroundImage:
-                      AssetImage("assets/images/foto_perfil_1.png"),
+                      AssetImage("lib/images/foto_perfil_1.png"),
                 ),
                 accountName: Text("Liniker Thiers"),
                 accountEmail: Text("email@email.com")),
