@@ -3,6 +3,7 @@ import 'package:trilhaapp/pages/card_page.dart';
 import 'package:trilhaapp/pages/image_assets.dart';
 import 'package:trilhaapp/pages/list_view_horizontal_page.dart';
 import 'package:trilhaapp/pages/list_view_v.dart';
+import 'package:trilhaapp/pages/tarefa_page.dart';
 import 'package:trilhaapp/shared/widgets/custom_drawer.dart';
 
 class MainPage extends StatefulWidget {
@@ -46,11 +47,12 @@ class _MainPageState extends State<MainPage> {
                   ImageAssetsPage(),
                   ListViewVPage(),
                   ListViewHorizontal(),
+                  TarefaPage(),
                 ],
               ),
             ),
             BottomNavigationBar(
-              type: BottomNavigationBarType.fixed,
+                type: BottomNavigationBarType.fixed,
                 onTap: (value) {
                   controller.jumpToPage(value);
                 },
@@ -62,7 +64,9 @@ class _MainPageState extends State<MainPage> {
                   BottomNavigationBarItem(
                       label: "Pag3", icon: Icon(Icons.list)),
                   BottomNavigationBarItem(
-                      label: "Pag4", icon: Icon(Icons.person)),
+                      label: "Pag4", icon: Icon(Icons.image)),
+                  BottomNavigationBarItem(
+                      label: "Pag5", icon: Icon(Icons.list_alt)),
                 ]),
           ],
         ),
