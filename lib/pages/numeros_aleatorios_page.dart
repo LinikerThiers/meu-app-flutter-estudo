@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:trilhaapp/services/app_storage_service.dart';
 
 class NumerosAleatoriosPage extends StatefulWidget {
   const NumerosAleatoriosPage({super.key});
@@ -13,9 +14,7 @@ class NumerosAleatoriosPage extends StatefulWidget {
 class _NumerosAleatoriosPageState extends State<NumerosAleatoriosPage> {
   int? numeroGerado = 0;
   int? quantidadeCliques = 0;
-  final CHAVE_QUANTIDADE_CLIQUES = "quantidade_cliques";
-  final CHAVE_NUMERO_ALEATORIO = "numero_aleatorio";
-  late SharedPreferences storage;
+  AppStorageService storage = AppStorageService();
 
   @override
   void initState() {
@@ -25,10 +24,9 @@ class _NumerosAleatoriosPageState extends State<NumerosAleatoriosPage> {
 
   void carregarNumeroSalvo() async {
     try {
-      storage = await SharedPreferences.getInstance();
+        numeroGerado = await storage.getNumerosAleatoriosNumeroAleatorio();
+        quantidadeCliques = await storage.getNumerosAleatoriosQuantidadeCliques();
       setState(() {
-        numeroGerado = storage.getInt(CHAVE_NUMERO_ALEATORIO) ?? 0;
-        quantidadeCliques = storage.getInt(CHAVE_QUANTIDADE_CLIQUES) ?? 0;
       });
     } catch (e) {
       print("Erro ao carregar número salvo: $e");
@@ -37,9 +35,8 @@ class _NumerosAleatoriosPageState extends State<NumerosAleatoriosPage> {
 
   void salvarNumero(int numero) async {
     try {
-      storage = await SharedPreferences.getInstance();
-      await storage.setInt(CHAVE_NUMERO_ALEATORIO, numero);
-      await storage.setInt(CHAVE_QUANTIDADE_CLIQUES, quantidadeCliques!);
+      await storage.setNumerosAleatoriosNumeroAleatorio(numero);
+      await storage.setNumerosAleatoriosQuantidadeCliques( quantidadeCliques!);
     } catch (e) {
       print("Erro ao salvar número: $e");
     }
