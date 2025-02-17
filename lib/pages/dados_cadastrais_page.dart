@@ -38,7 +38,8 @@ class _DadosCadastraisPageState extends State<DadosCadastraisPage> {
 
   carregarDados() async {
     nomeController.text = await storage.getDadosCadastraisNome();
-    dataNascimentoController.text = await storage.getDadosCadastraisDataNascimento();
+    dataNascimentoController.text =
+        await storage.getDadosCadastraisDataNascimento();
     if (dataNascimentoController.text.isEmpty) {
       dataNascimento = DateTime.parse(dataNascimentoController.text);
     }
@@ -46,9 +47,7 @@ class _DadosCadastraisPageState extends State<DadosCadastraisPage> {
     linguagensSelecionadas = await storage.getDadosCadastraisLinguagens();
     tempoExperiencia = await storage.getDadosCadastraisTempoExperiencia();
     salarioEscolhido = await storage.getDadosCadastraisSalario();
-    setState(() {
-      
-    });
+    setState(() {});
   }
 
   List<DropdownMenuItem<int>> returnItens(int quantidadeMaxima) {
@@ -205,12 +204,9 @@ class _DadosCadastraisPageState extends State<DadosCadastraisPage> {
                                       "Selecione pelo menos uma linguagem")));
                               return;
                             }
-                            if (tempoExperiencia == null) {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                      content: Text("Preencha a experiência")));
-                              return;
-                            }
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                content: Text("Preencha a experiência")));
+
                             if (salarioEscolhido == 0) {
                               ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                                   content: Text(

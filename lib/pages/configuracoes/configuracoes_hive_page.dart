@@ -1,22 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:trilhaapp/services/app_storage_service.dart';
+import 'package:trilhaapp/model/configuracoes_model.dart';
+import 'package:trilhaapp/repositories/configuracoes_repository.dart';
 
-class ConfiguracoesPage extends StatefulWidget {
-  const ConfiguracoesPage({super.key});
+class ConfiguracoesHivePage extends StatefulWidget {
+  const ConfiguracoesHivePage({super.key});
 
   @override
-  State<ConfiguracoesPage> createState() => _ConfiguracoesPageState();
+  State<ConfiguracoesHivePage> createState() => _ConfiguracoesHivePageState();
 }
 
-class _ConfiguracoesPageState extends State<ConfiguracoesPage> {
-  AppStorageService storage = AppStorageService();
+class _ConfiguracoesHivePageState extends State<ConfiguracoesHivePage> {
+  late ConfiguracoesRepository configuracoesRepository;
+  ConfiguracoesModel configuracoesModel = ConfiguracoesModel.vazio();
 
   TextEditingController nomeUsuarioController = TextEditingController();
   TextEditingController alturaUsuarioController = TextEditingController();
-  String? nomeUsuario;
-  double? altura;
-  bool receberPushNotification = false;
-  bool temaEscuro = false;
 
   @override
   void initState() {
@@ -26,11 +24,10 @@ class _ConfiguracoesPageState extends State<ConfiguracoesPage> {
   }
 
   carregarDados() async {
-    nomeUsuarioController.text = await storage.getConfiguracaoNomeUsuario();
-    alturaUsuarioController.text =
-        (await storage.getConfiguracaoAlturaUsuario()).toString();
-    receberPushNotification = await storage.getConfiguracaoNotificacao();
-    temaEscuro = await storage.getConfiguracaoTemaEscuro();
+    configuracoesRepository = await ConfiguracoesRepository.carregar();
+    configuracoesModel = configuracoesRepository.obterDados();
+    nomeUsuarioController.text = configuracoesModel.nomeUsuario;
+    alturaUsuarioController.text = configuracoesModel.altura.toString();
     setState(() {});
   }
 
@@ -39,7 +36,7 @@ class _ConfiguracoesPageState extends State<ConfiguracoesPage> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: Text("Configurações"),
+          title: Text("Configurações Hive"),
         ),
         body: Container(
           width: double.infinity,
@@ -115,10 +112,10 @@ class _ConfiguracoesPageState extends State<ConfiguracoesPage> {
                   activeTrackColor: Colors.purple[400],
                   inactiveThumbColor: Colors.purple[200],
                   inactiveTrackColor: Colors.purple[100],
-                  value: receberPushNotification,
+                  value: configuracoesModel.notificacao,
                   onChanged: (bool value) {
                     setState(() {
-                      receberPushNotification = value;
+                      configuracoesModel.notificacao = value;
                     });
                   }),
               SwitchListTile(
@@ -127,10 +124,10 @@ class _ConfiguracoesPageState extends State<ConfiguracoesPage> {
                   activeTrackColor: Colors.purple[400],
                   inactiveThumbColor: Colors.purple[200],
                   inactiveTrackColor: Colors.purple[100],
-                  value: temaEscuro,
+                  value: configuracoesModel.temaEscuro,
                   onChanged: (bool value) {
                     setState(() {
-                      temaEscuro = value;
+                      configuracoesModel.temaEscuro = value;
                     });
                   }),
               SizedBox(
@@ -146,7 +143,7 @@ class _ConfiguracoesPageState extends State<ConfiguracoesPage> {
                     onPressed: () async {
                       FocusManager.instance.primaryFocus?.unfocus();
                       try {
-                        await storage.setConfiguracaoAlturaUsuario(double.parse(
+                        configuracoesModel.altura = (double.parse(
                             alturaUsuarioController.text.replaceAll(",", ".")));
                       } catch (e) {
                         if (!mounted) return;
@@ -168,10 +165,10 @@ class _ConfiguracoesPageState extends State<ConfiguracoesPage> {
                             });
                         return;
                       }
-                      await storage.setConfiguracaoNomeUsuario(nomeUsuarioController.text);
-                      await storage.setConfiguracaoNotificacao(receberPushNotification);
-                      await storage.setConfiguracaoTemaEscuro(temaEscuro);
+                      configuracoesModel.nomeUsuario =
+                          nomeUsuarioController.text;
                       if (!mounted) return;
+                      configuracoesRepository.salvar(configuracoesModel);
                       Navigator.pop(context);
                     },
                     style: ButtonStyle(
