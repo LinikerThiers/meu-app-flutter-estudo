@@ -7,7 +7,8 @@ import 'package:path_provider/path_provider.dart' as path_provider;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  var documentDirectory = await path_provider.getApplicationDocumentsDirectory();
+  var documentDirectory =
+      await path_provider.getApplicationDocumentsDirectory();
   Hive.init(documentDirectory.path);
   Hive.registerAdapter(DadosCadastaisModelAdapter());
   Hive.registerAdapter(TarefaHiveModelAdapter());
