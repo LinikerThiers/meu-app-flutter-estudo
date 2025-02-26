@@ -4,6 +4,7 @@ import 'package:trilhaapp/pages/image_assets.dart';
 import 'package:trilhaapp/pages/list_view_horizontal_page.dart';
 import 'package:trilhaapp/pages/list_view_v.dart';
 import 'package:trilhaapp/pages/tarefa_page/tarefa_sqlite_page.dart';
+import 'package:trilhaapp/pages/teste_http.dart';
 import 'package:trilhaapp/shared/widgets/custom_drawer.dart';
 
 class MainPage extends StatefulWidget {
@@ -43,6 +44,7 @@ class _MainPageState extends State<MainPage> {
                   debugPrint(value.toString());
                 }, //pode vizualizar páginas arrastando
                 children: [
+                  HttpTestePage(),
                   CardPage(),
                   ImageAssetsPage(),
                   ListViewVPage(),
@@ -58,6 +60,8 @@ class _MainPageState extends State<MainPage> {
                 },
                 currentIndex: posicaoPagina,
                 items: [
+                  BottomNavigationBarItem(
+                      label: "HTTP", icon: Icon(Icons.get_app_rounded)),
                   BottomNavigationBarItem(
                       label: "Pag1", icon: Icon(Icons.home)),
                   BottomNavigationBarItem(label: "Pag2", icon: Icon(Icons.add)),
