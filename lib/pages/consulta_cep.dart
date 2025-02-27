@@ -1,8 +1,6 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 import 'package:trilhaapp/model/viacep_model.dart';
+import 'package:trilhaapp/repositories/via_cep_repository.dart';
 
 class ConsultaCEP extends StatefulWidget {
   const ConsultaCEP({super.key});
@@ -13,10 +11,9 @@ class ConsultaCEP extends StatefulWidget {
 
 class _ConsultaCEPState extends State<ConsultaCEP> {
   var cepController = TextEditingController(text: "");
-  String endereco = "";
-  String cidade = "";
-  String estado = "";
   bool loading = false;
+  var viaCEPModel = ViaCEPModel();
+  var viaCepRepository = ViaCepRepository();
 
   @override
   Widget build(BuildContext context) {
@@ -63,25 +60,12 @@ class _ConsultaCEPState extends State<ConsultaCEP> {
                     color: Colors.purple,
                   )),
               onChanged: (String value) async {
-                setState(() {
-                  loading = true;
-                });
                 var cep = value.replaceAll(RegExp(r'[^0-9]'), '');
-                debugPrint(cep);
                 if (cep.length == 8) {
-                  var response = await http
-                      .get(Uri.parse("https://viacep.com.br/ws/$cep/json/"));
-                  debugPrint(response.statusCode.toString());
-                  var json = jsonDecode(response.body);
-                  var viaCEPModel = ViaCEPModel.fromJson(json);
-                  //print(viaCEPModel);
-                  cidade = viaCEPModel.localidade ?? "";
-                  estado = viaCEPModel.uf ?? "";
-                  endereco = viaCEPModel.logradouro ?? "";
-                } else {
-                  cidade = "";
-                  estado = "";
-                  endereco = "";
+                  setState(() {
+                    loading = true;
+                  });
+                  viaCEPModel = await viaCepRepository.consultarCEP(cep);
                 }
                 setState(() {
                   loading = false;
@@ -106,16 +90,16 @@ class _ConsultaCEPState extends State<ConsultaCEP> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                    if(loading) CircularProgressIndicator(),
+                  if (loading) CircularProgressIndicator(),
                   Text(
-                    endereco,
+                    viaCEPModel.logradouro ?? "",
                     style: TextStyle(
                       fontSize: 16,
                       color: Colors.purple,
                     ),
                   ),
                   Text(
-                    "$cidade - $estado",
+                    "${viaCEPModel.localidade ?? ""} - ${viaCEPModel.uf ?? ""}",
                     style: TextStyle(
                       fontSize: 16,
                       color: Colors.purple,
@@ -127,13 +111,8 @@ class _ConsultaCEPState extends State<ConsultaCEP> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.add),
-          onPressed: () async {
-            var response = await http.get(Uri.parse("https://www.google.com"));
-            debugPrint(response.statusCode.toString());
-            debugPrint(response.body);
-          }),
+      floatingActionButton:
+          FloatingActionButton(child: Icon(Icons.add), onPressed: () async {}),
     ));
   }
 }
