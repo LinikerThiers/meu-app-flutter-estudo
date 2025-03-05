@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:trilhaapp/model/comment_model.dart';
-import 'package:trilhaapp/repositories/comment_repository.dart';
+import 'package:trilhaapp/repositories/comments_http_repository.dart';
 
 class CommentsPage extends StatefulWidget {
   final int postId;
@@ -11,7 +11,7 @@ class CommentsPage extends StatefulWidget {
 }
 
 class _CommentsPageState extends State<CommentsPage> {
-  var commentRepository = CommentRepository();
+  var commentRepository = CommentsHttpRepository();
   var comments = <CommentModel>[];
 
   @override

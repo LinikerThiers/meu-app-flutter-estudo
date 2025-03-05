@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:trilhaapp/model/comment_model.dart';
 import 'package:http/http.dart' as http;
 
-class CommentRepository {
+class CommentsHttpRepository {
   Future<List<CommentModel>> retornaComentarios(int postId) async {
     var response = await http.get(Uri.parse(
         "https://jsonplaceholder.typicode.com/posts/$postId/comments"));
