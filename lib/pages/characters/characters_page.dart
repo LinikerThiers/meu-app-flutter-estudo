@@ -12,6 +12,8 @@ class CharactersPage extends StatefulWidget {
 class _CharactersPageState extends State<CharactersPage> {
   late MarvelRepository marvelRepository;
   CharactersModel charactersModel = CharactersModel();
+  int offset = 0;
+  var carregando = false;
 
   @override
   void initState() {
@@ -22,48 +24,102 @@ class _CharactersPageState extends State<CharactersPage> {
   }
 
   carregarDados() async {
-    charactersModel = await marvelRepository.getCharacters();
+    if (charactersModel.data == null || charactersModel.data!.results == null) {
+      charactersModel = await marvelRepository.getCharacters(offset);
+    } else {
+      setState(() {
+        carregando = true;
+      });
+      offset = offset + charactersModel.data!.count!;
+      var tempList = await marvelRepository.getCharacters(offset);
+      charactersModel.data!.results!.addAll(tempList.data!.results!);
+      carregando = false;
+    }
     setState(() {});
+  }
+
+  int retornaQuantidadeTotal() {
+    try{
+      return charactersModel.data!.total!;
+    } catch (e){
+      return 0;
+    }
+  }
+
+  int retornaQuantidadeAtual() {
+    try{
+      return offset + charactersModel.data!.count!;
+    } catch (e){
+      return 0;
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-      appBar: AppBar(),
-      body: Container(
-        child: ListView.builder(
-            itemCount: (charactersModel.data == null ||
-                    charactersModel.data!.results == null)
-                ? 0
-                : charactersModel.data!.results!.length,
-            itemBuilder: (_, int index) {
-              var characters = charactersModel.data!.results![index];
-              return Card(
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Image.network("${characters.thumbnail!.path!}.${characters.thumbnail!.extension!}", height: 100, width: 100,),
-                    Expanded(
-                      child: Container(
-                        margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(characters.name!, style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.w600,
-                            ),),
-                            Text(characters.description!),
-                          ],
+          backgroundColor: Colors.grey[200],
+      appBar: AppBar(
+        title: Text("Heróis: ${retornaQuantidadeAtual()}/${retornaQuantidadeTotal()}"),
+      ),
+      body: Column(
+        children: [
+          Expanded(
+            child: ListView.builder(
+                itemCount: (charactersModel.data == null ||
+                        charactersModel.data!.results == null)
+                    ? 0
+                    : charactersModel.data!.results!.length,
+                itemBuilder: (_, int index) {
+                  var characters = charactersModel.data!.results![index];
+                  return Card(
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Image.network(
+                          "${characters.thumbnail!.path!}.${characters.thumbnail!.extension!}",
+                          height: 100,
+                          width: 100,
                         ),
-                      ),
+                        Expanded(
+                          child: Container(
+                            margin: EdgeInsets.symmetric(
+                                horizontal: 16, vertical: 8),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  characters.name!,
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                                Text(characters.description!),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-                  ],
+                  );
+                }),
+          ),
+          !carregando
+              ? ElevatedButton(
+                  onPressed: () {
+                    carregarDados();
+                  },
+                  child: Text("Carregar mais itens"))
+              : ElevatedButton(
+                  onPressed: null,
+                  child: SizedBox(
+                      width: 20,
+                      height: 20,
+                      child: CircularProgressIndicator()),
                 ),
-              );
-            }),
+        ],
       ),
     ));
   }
