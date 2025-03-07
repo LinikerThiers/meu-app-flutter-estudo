@@ -10,6 +10,7 @@ class CharactersPage extends StatefulWidget {
 }
 
 class _CharactersPageState extends State<CharactersPage> {
+  ScrollController _scrollController = ScrollController();
   late MarvelRepository marvelRepository;
   CharactersModel charactersModel = CharactersModel();
   int offset = 0;
@@ -18,12 +19,20 @@ class _CharactersPageState extends State<CharactersPage> {
   @override
   void initState() {
     // TODO: implement initState
+    _scrollController.addListener(() {
+      var posicaoParaPaginar =
+          _scrollController.position.maxScrollExtent * 0.95;
+      if (_scrollController.position.pixels > posicaoParaPaginar) {
+        carregarDados();
+      }
+    });
     marvelRepository = MarvelRepository();
     super.initState();
     carregarDados();
   }
 
   carregarDados() async {
+    if (carregando) return;
     if (charactersModel.data == null || charactersModel.data!.results == null) {
       charactersModel = await marvelRepository.getCharacters(offset);
     } else {
@@ -39,17 +48,17 @@ class _CharactersPageState extends State<CharactersPage> {
   }
 
   int retornaQuantidadeTotal() {
-    try{
+    try {
       return charactersModel.data!.total!;
-    } catch (e){
+    } catch (e) {
       return 0;
     }
   }
 
   int retornaQuantidadeAtual() {
-    try{
+    try {
       return offset + charactersModel.data!.count!;
-    } catch (e){
+    } catch (e) {
       return 0;
     }
   }
@@ -58,14 +67,16 @@ class _CharactersPageState extends State<CharactersPage> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-          backgroundColor: Colors.grey[200],
+      backgroundColor: Colors.grey[200],
       appBar: AppBar(
-        title: Text("Heróis: ${retornaQuantidadeAtual()}/${retornaQuantidadeTotal()}"),
+        title: Text(
+            "Heróis: ${retornaQuantidadeAtual()}/${retornaQuantidadeTotal()}"),
       ),
       body: Column(
         children: [
           Expanded(
             child: ListView.builder(
+                controller: _scrollController,
                 itemCount: (charactersModel.data == null ||
                         charactersModel.data!.results == null)
                     ? 0
@@ -106,19 +117,16 @@ class _CharactersPageState extends State<CharactersPage> {
                   );
                 }),
           ),
-          !carregando
+          carregando
               ? ElevatedButton(
-                  onPressed: () {
-                    carregarDados();
-                  },
-                  child: Text("Carregar mais itens"))
-              : ElevatedButton(
                   onPressed: null,
                   child: SizedBox(
-                      width: 20,
-                      height: 20,
-                      child: CircularProgressIndicator()),
-                ),
+                    width: 30,
+                    height: 30,
+                    child: CircularProgressIndicator(),
+                  ),
+                )
+              : SizedBox.shrink(),
         ],
       ),
     ));

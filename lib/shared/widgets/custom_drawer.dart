@@ -7,7 +7,6 @@ import 'package:trilhaapp/pages/dados_cadastrais/dados_cadastrais_hive_page.dart
 import 'package:trilhaapp/pages/login_page.dart';
 import 'package:trilhaapp/pages/numeros_aleatorios/numeros_aleatorios_hive_page%20copy.dart';
 import 'package:trilhaapp/pages/posts_page.dart';
-import 'package:trilhaapp/repositories/marvel/marvel_repository.dart';
 // import 'package:trilhaapp/pages/numeros_aleatorios/numeros_aleatorios_shared_preferences_page.dart';
 
 class CustomDrawer extends StatelessWidget {
@@ -214,9 +213,6 @@ class CustomDrawer extends StatelessWidget {
                   ],
                 )),
             onTap: () async {
-              // var marvelRepository = MarvelRepository();
-              // var heroes = await marvelRepository.getCharacters();
-              // print(heroes);
               Navigator.pop(context);
               Navigator.push(context, 
               MaterialPageRoute(builder: (bc) => CharactersPage())
