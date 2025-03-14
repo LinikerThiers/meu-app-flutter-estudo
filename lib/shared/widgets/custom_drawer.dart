@@ -9,6 +9,7 @@ import 'package:trilhaapp/pages/numeros_aleatorios/numeros_aleatorios_hive_page%
 import 'package:trilhaapp/pages/posts_page.dart';
 import 'package:trilhaapp/pages/tarefa_page/tarefa_http_page.dart';
 // import 'package:trilhaapp/pages/numeros_aleatorios/numeros_aleatorios_shared_preferences_page.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({super.key});
@@ -241,6 +242,23 @@ class CustomDrawer extends StatelessWidget {
               Navigator.push(context, 
               MaterialPageRoute(builder: (bc) => TarefaHttpPage())
               );
+            },
+          ),
+          InkWell(
+            child: Container(
+                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                width: double.infinity,
+                child: Row(
+                  children: [
+                    FaIcon(FontAwesomeIcons.userGraduate, color: Colors.purple, size: 20,),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Text("Opção 1"),
+                  ],
+                )),
+            onTap: () async {
+              Navigator.pop(context);
             },
           ),
           SizedBox(
