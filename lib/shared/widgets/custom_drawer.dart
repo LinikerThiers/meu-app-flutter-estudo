@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:trilhaapp/pages/auto_size_text_page.dart';
 import 'package:trilhaapp/pages/characters/characters_page.dart';
 import 'package:trilhaapp/pages/configuracoes/configuracoes_hive_page.dart';
 import 'package:trilhaapp/pages/dados_cadastrais/dados_cadastrais_hive_page.dart';
@@ -18,8 +19,8 @@ class CustomDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Drawer(
       backgroundColor: Colors.white,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      child: ListView(
+        // crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           InkWell(
             onTap: () {
@@ -55,8 +56,7 @@ class CustomDrawer extends StatelessWidget {
             child: UserAccountsDrawerHeader(
                 decoration: BoxDecoration(color: Colors.purple),
                 currentAccountPicture: CircleAvatar(
-                  backgroundImage:
-                      AssetImage("lib/images/foto_perfil_1.png"),
+                  backgroundImage: AssetImage("lib/images/foto_perfil_1.png"),
                 ),
                 accountName: Text("Liniker Thiers"),
                 accountEmail: Text("email@email.com")),
@@ -101,7 +101,8 @@ class CustomDrawer extends StatelessWidget {
                 )),
             onTap: () {
               Navigator.pop(context);
-              Navigator.push(context, MaterialPageRoute(builder: (bc) => ConfiguracoesHivePage()));
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (bc) => ConfiguracoesHivePage()));
             },
           ),
           Divider(),
@@ -170,9 +171,10 @@ class CustomDrawer extends StatelessWidget {
                 )),
             onTap: () {
               Navigator.pop(context);
-              Navigator.push(context, 
-              MaterialPageRoute(builder: (bc) => NumerosAleatoriosHivePage())
-              );
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (bc) => NumerosAleatoriosHivePage()));
             },
           ),
           SizedBox(
@@ -193,9 +195,8 @@ class CustomDrawer extends StatelessWidget {
                 )),
             onTap: () {
               Navigator.pop(context);
-              Navigator.push(context, 
-              MaterialPageRoute(builder: (bc) => PostsPage())
-              );
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (bc) => PostsPage()));
             },
           ),
           SizedBox(
@@ -216,9 +217,8 @@ class CustomDrawer extends StatelessWidget {
                 )),
             onTap: () async {
               Navigator.pop(context);
-              Navigator.push(context, 
-              MaterialPageRoute(builder: (bc) => CharactersPage())
-              );
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (bc) => CharactersPage()));
             },
           ),
           SizedBox(
@@ -239,9 +239,8 @@ class CustomDrawer extends StatelessWidget {
                 )),
             onTap: () async {
               Navigator.pop(context);
-              Navigator.push(context, 
-              MaterialPageRoute(builder: (bc) => TarefaHttpPage())
-              );
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (bc) => TarefaHttpPage()));
             },
           ),
           InkWell(
@@ -250,7 +249,10 @@ class CustomDrawer extends StatelessWidget {
                 width: double.infinity,
                 child: Row(
                   children: [
-                    FaIcon(FontAwesomeIcons.userGraduate, color: Colors.purple, size: 20,),
+                    FaIcon(
+                      FontAwesomeIcons.userGraduate,
+                      size: 20,
+                    ),
                     SizedBox(
                       width: 5,
                     ),
@@ -259,6 +261,31 @@ class CustomDrawer extends StatelessWidget {
                 )),
             onTap: () async {
               Navigator.pop(context);
+            },
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          InkWell(
+            child: Container(
+                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                width: double.infinity,
+                child: Row(
+                  children: [
+                    FaIcon(
+                      FontAwesomeIcons.paperclip,
+                      size: 20,
+                    ),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Text("Auto Sized Text"),
+                  ],
+                )),
+            onTap: () async {
+              Navigator.pop(context);
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (bc) => AutoSizeTextPage()));
             },
           ),
           SizedBox(
