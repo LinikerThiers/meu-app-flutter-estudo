@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:trilhaapp/pages/card_page.dart';
 import 'package:trilhaapp/pages/image_assets.dart';
 import 'package:trilhaapp/pages/list_view_horizontal_page.dart';
 import 'package:trilhaapp/pages/list_view_v.dart';
-import 'package:trilhaapp/pages/tarefa_page/tarefa_sqlite_page.dart';
+import 'package:trilhaapp/pages/percent_indicator_page.dart';
+// import 'package:trilhaapp/pages/tarefa_page/tarefa_sqlite_page.dart';
 import 'package:trilhaapp/pages/consulta_cep.dart';
 import 'package:trilhaapp/shared/widgets/custom_drawer.dart';
 
@@ -49,7 +51,8 @@ class _MainPageState extends State<MainPage> {
                   ImageAssetsPage(),
                   ListViewVPage(),
                   ListViewHorizontal(),
-                  TarefaSQLitePage(),
+                  PercentIndicatorPage(),
+                  // TarefaSQLitePage(),
                 ],
               ),
             ),
@@ -70,7 +73,7 @@ class _MainPageState extends State<MainPage> {
                   BottomNavigationBarItem(
                       label: "Pag4", icon: Icon(Icons.image)),
                   BottomNavigationBarItem(
-                      label: "Pag5", icon: Icon(Icons.list_alt)),
+                      label: "Pag5", icon: FaIcon(FontAwesomeIcons.spinner)),
                 ]),
           ],
         ),
