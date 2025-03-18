@@ -1,4 +1,6 @@
+import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:trilhaapp/model/viacep_model.dart';
 import 'package:trilhaapp/repositories/via_cep_repository.dart';
 
@@ -36,6 +38,33 @@ class _ConsultaCEPState extends State<ConsultaCEP> {
             ),
             SizedBox(
               height: 15,
+            ),
+            TextFormField(
+              keyboardType: TextInputType.number,
+              style: TextStyle(
+                color: Colors.purple,
+              ),
+              decoration: InputDecoration(
+                filled: true,
+                fillColor: Colors.purple[50],
+                contentPadding: EdgeInsets.only(top: 0),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(20),
+                  borderSide: BorderSide.none,
+                ),
+                hintText: "CEP",
+                hintStyle: TextStyle(
+                  color: Colors.purple,
+                ),
+                prefixIcon: Icon(Icons.place, color: Colors.purple,),
+              ),
+              inputFormatters: [
+                FilteringTextInputFormatter.digitsOnly,
+                CepInputFormatter(),
+              ],
+            ),
+            SizedBox(
+              height: 10,
             ),
             TextField(
               style: TextStyle(
