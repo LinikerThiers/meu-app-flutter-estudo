@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+// import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:trilhaapp/pages/card_page.dart';
 import 'package:trilhaapp/pages/image_assets.dart';
 import 'package:trilhaapp/pages/list_view_horizontal_page.dart';
@@ -8,6 +9,7 @@ import 'package:trilhaapp/pages/percent_indicator_page.dart';
 // import 'package:trilhaapp/pages/tarefa_page/tarefa_sqlite_page.dart';
 import 'package:trilhaapp/pages/consulta_cep.dart';
 import 'package:trilhaapp/shared/widgets/custom_drawer.dart';
+// import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -16,8 +18,20 @@ class MainPage extends StatefulWidget {
   State<MainPage> createState() => _MainPageState();
 }
 
+//Para usar o outro exemplo usa  - class _MainPageState extends State<MainPage> with TickerProviderStateMixin
+
 class _MainPageState extends State<MainPage> {
-  PageController controller = PageController(initialPage: 0);
+  PageController pageController = PageController(initialPage: 0);
+
+  // late TabController pageController;
+
+  // @override
+  // void initState() {
+  //   // TODO: implement initState
+  //   super.initState();
+  //   pageController = TabController(initialIndex: 0, length: 5, vsync: this);
+  // }
+
   int posicaoPagina = 0;
   @override
   Widget build(BuildContext context) {
@@ -37,8 +51,9 @@ class _MainPageState extends State<MainPage> {
         body: Column(
           children: [
             Expanded(
+              //Para usar o outro exemplo usa o TabView
               child: PageView(
-                controller: controller,
+                controller: pageController,
                 onPageChanged: (value) {
                   setState(() {
                     posicaoPagina = value;
@@ -59,7 +74,7 @@ class _MainPageState extends State<MainPage> {
             BottomNavigationBar(
                 type: BottomNavigationBarType.fixed,
                 onTap: (value) {
-                  controller.jumpToPage(value);
+                  pageController.jumpToPage(value);
                 },
                 currentIndex: posicaoPagina,
                 items: [
@@ -77,6 +92,19 @@ class _MainPageState extends State<MainPage> {
                 ]),
           ],
         ),
+        // bottomNavigationBar: ConvexAppBar(
+        //   backgroundColor: Colors.purple,
+        //   items: [
+        //     TabItem(icon: Icons.place, title: 'HTTP'),
+        //     TabItem(icon: Icons.home, title: 'Pag1'),
+        //     TabItem(icon: Icons.add, title: 'Pag2'),
+        //     TabItem(icon: Icons.list, title: 'Pag3'),
+        //     TabItem(icon: Icons.image, title: 'Pag4'),
+        //     TabItem(icon: Icons.autorenew, title: 'Pag5'),
+        //   ],
+        //   onTap: (int i) => pageController.index = i,
+        //   controller: pageController,
+        // )
       ),
     );
   }
