@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:trilhaapp/pages/auto_size_text_page.dart';
+import 'package:trilhaapp/pages/battery/battery_page.dart';
 import 'package:trilhaapp/pages/characters/characters_page.dart';
 import 'package:trilhaapp/pages/configuracoes/configuracoes_hive_page.dart';
 import 'package:trilhaapp/pages/dados_cadastrais/dados_cadastrais_hive_page.dart';
@@ -180,6 +181,7 @@ class CustomDrawer extends StatelessWidget {
                       builder: (bc) => NumerosAleatoriosHivePage()));
             },
           ),
+          Divider(),
           SizedBox(
             height: 10,
           ),
@@ -202,6 +204,7 @@ class CustomDrawer extends StatelessWidget {
                   context, MaterialPageRoute(builder: (bc) => PostsPage()));
             },
           ),
+          Divider(),
           SizedBox(
             height: 10,
           ),
@@ -224,6 +227,7 @@ class CustomDrawer extends StatelessWidget {
                   MaterialPageRoute(builder: (bc) => CharactersPage()));
             },
           ),
+          Divider(),
           SizedBox(
             height: 10,
           ),
@@ -246,6 +250,33 @@ class CustomDrawer extends StatelessWidget {
                   MaterialPageRoute(builder: (bc) => TarefaHttpPage()));
             },
           ),
+          Divider(),
+          SizedBox(
+            height: 10,
+          ),
+          InkWell(
+            child: Container(
+                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                width: double.infinity,
+                child: Row(
+                  children: [
+                    Icon(Icons.battery_charging_full),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Text("STATUS_BATERIA".tr()),
+                  ],
+                )),
+            onTap: () async {
+              Navigator.pop(context);
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (bc) => BatteryPage()));
+            },
+          ),
+          Divider(),
+          SizedBox(
+            height: 10,
+          ),
           InkWell(
             child: Container(
                 padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
@@ -266,6 +297,7 @@ class CustomDrawer extends StatelessWidget {
               Navigator.pop(context);
             },
           ),
+          Divider(),
           SizedBox(
             height: 10,
           ),
@@ -291,6 +323,7 @@ class CustomDrawer extends StatelessWidget {
                   MaterialPageRoute(builder: (bc) => AutoSizeTextPage()));
             },
           ),
+          Divider(),
           SizedBox(
             height: 10,
           ),
@@ -328,6 +361,7 @@ class CustomDrawer extends StatelessWidget {
               print(data.toString());
             },
           ),
+          Divider(),
           SizedBox(
             height: 10,
           ),
@@ -356,6 +390,7 @@ class CustomDrawer extends StatelessWidget {
               Navigator.pop(context);
             },
           ),
+          Divider(),
           SizedBox(
             height: 10,
           ),
