@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:trilhaapp/pages/auto_size_text_page.dart';
 import 'package:trilhaapp/pages/battery/battery_page.dart';
@@ -17,6 +20,7 @@ import 'package:trilhaapp/pages/tarefa_page/tarefa_http_page.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:path_provider/path_provider.dart' as path_provider;
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({super.key});
@@ -295,6 +299,69 @@ class CustomDrawer extends StatelessWidget {
               await launchUrl(Uri.parse(
                   "https://linikerthiers.github.io/liniker_thiers_site/"));
               Navigator.pop(context);
+            },
+          ),
+          Divider(),
+          SizedBox(
+            height: 10,
+          ),
+          InkWell(
+            child: Container(
+                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                width: double.infinity,
+                child: Row(
+                  children: [
+                    Icon(Icons.folder),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Text("Path"),
+                  ],
+                )),
+            onTap: () async {
+              var directory = await path_provider.getTemporaryDirectory();
+              print(directory.path);
+              directory = await path_provider.getApplicationSupportDirectory();
+              print(directory.path);
+              directory =
+                  await path_provider.getApplicationDocumentsDirectory();
+              print(directory.path);
+            },
+          ),
+          Divider(),
+          SizedBox(
+            height: 10,
+          ),
+          InkWell(
+            child: Container(
+                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                width: double.infinity,
+                child: Row(
+                  children: [
+                    FaIcon(FontAwesomeIcons.file),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Text("INFO_PACOTE".tr()),
+                  ],
+                )),
+            onTap: () async {
+              PackageInfo packageInfo = await PackageInfo.fromPlatform();
+
+              String appName = packageInfo.appName;
+              String packageName = packageInfo.packageName;
+              String version = packageInfo.version;
+              String buildNumber = packageInfo.buildNumber;
+
+              //Da para pegar esses dados para saber em qual versao o usuario esta
+              // e em qual plataforma ele esta usando o app
+
+              print(appName);
+              print(packageName);
+              print(version);
+              print(buildNumber);
+
+              print(Platform.operatingSystem);
             },
           ),
           Divider(),
