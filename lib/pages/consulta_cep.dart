@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:trilhaapp/model/viacep_model.dart';
 import 'package:trilhaapp/repositories/via_cep_repository.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class ConsultaCEP extends StatefulWidget {
   const ConsultaCEP({super.key});
@@ -29,7 +30,7 @@ class _ConsultaCEPState extends State<ConsultaCEP> {
               height: 30,
             ),
             Text(
-              "Consulta de CEP",
+              "CONSULTA_CEP".tr(),
               style: TextStyle(
                 color: Colors.purple,
                 fontWeight: FontWeight.bold,

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:trilhaapp/pages/auto_size_text_page.dart';
@@ -316,15 +317,43 @@ class CustomDrawer extends StatelessWidget {
               var f = NumberFormat('#,###.0#', 'en_US');
               var fBR = NumberFormat('#,###.0#', 'pt_BR');
 
-              print(f.format(12345.345)); 
-              print(fBR.format(12345.345)); 
+              print(f.format(12345.345));
+              print(fBR.format(12345.345));
 
               var data = DateTime(2022, 05, 09);
-              print(DateFormat('EEEE', 'en_US').format(data)); 
-              print(DateFormat('EEEE', 'pt_BR').format(data)); 
+              print(DateFormat('EEEE', 'en_US').format(data));
+              print(DateFormat('EEEE', 'pt_BR').format(data));
 
               Intl.defaultLocale = 'pt_BR';
               print(data.toString());
+            },
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          InkWell(
+            child: Container(
+                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                width: double.infinity,
+                child: Row(
+                  children: [
+                    FaIcon(
+                      FontAwesomeIcons.language,
+                      size: 20,
+                    ),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Text("Linguagem"),
+                  ],
+                )),
+            onTap: () async {
+              if (context.locale.toString() == "pt_BR") {
+                context.setLocale(Locale('en', 'US'));
+              } else {
+                context.setLocale(Locale('pt', 'BR'));
+              }
+              Navigator.pop(context);
             },
           ),
           SizedBox(
