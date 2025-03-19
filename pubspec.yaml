@@ -50,6 +50,7 @@ dependencies:
   convex_bottom_bar: ^3.2.0
   flutter_native_splash: ^2.3.1
   brasil_fields: ^1.17.0
+  intl: ^0.20.2
 
 dev_dependencies:
   flutter_launcher_icons: "^0.14.3"

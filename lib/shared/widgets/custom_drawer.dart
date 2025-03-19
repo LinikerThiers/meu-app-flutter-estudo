@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/date_symbol_data_local.dart';
 import 'package:trilhaapp/pages/auto_size_text_page.dart';
 import 'package:trilhaapp/pages/characters/characters_page.dart';
 import 'package:trilhaapp/pages/configuracoes/configuracoes_hive_page.dart';
@@ -11,6 +12,7 @@ import 'package:trilhaapp/pages/posts_page.dart';
 import 'package:trilhaapp/pages/tarefa_page/tarefa_http_page.dart';
 // import 'package:trilhaapp/pages/numeros_aleatorios/numeros_aleatorios_shared_preferences_page.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:intl/intl.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({super.key});
@@ -286,6 +288,43 @@ class CustomDrawer extends StatelessWidget {
               Navigator.pop(context);
               Navigator.push(context,
                   MaterialPageRoute(builder: (bc) => AutoSizeTextPage()));
+            },
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          InkWell(
+            child: Container(
+                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                width: double.infinity,
+                child: Row(
+                  children: [
+                    FaIcon(
+                      FontAwesomeIcons.coins,
+                      size: 20,
+                    ),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Text("Intl"),
+                  ],
+                )),
+            onTap: () async {
+              await initializeDateFormatting('pt_BR', null);
+              await initializeDateFormatting('en_US', null);
+
+              var f = NumberFormat('#,###.0#', 'en_US');
+              var fBR = NumberFormat('#,###.0#', 'pt_BR');
+
+              print(f.format(12345.345)); 
+              print(fBR.format(12345.345)); 
+
+              var data = DateTime(2022, 05, 09);
+              print(DateFormat('EEEE', 'en_US').format(data)); 
+              print(DateFormat('EEEE', 'pt_BR').format(data)); 
+
+              Intl.defaultLocale = 'pt_BR';
+              print(data.toString());
             },
           ),
           SizedBox(
