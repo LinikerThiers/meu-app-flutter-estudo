@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:trilhaapp/pages/auto_size_text_page.dart';
 import 'package:trilhaapp/pages/battery/battery_page.dart';
 import 'package:trilhaapp/pages/characters/characters_page.dart';
@@ -256,6 +257,28 @@ class CustomDrawer extends StatelessWidget {
             height: 10,
           ),
           InkWell(
+              child: Container(
+                  padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                  width: double.infinity,
+                  child: Row(
+                    children: [
+                      Icon(Icons.share),
+                      SizedBox(
+                        width: 5,
+                      ),
+                      Text("COMPARTILHAR".tr()),
+                    ],
+                  )),
+              onTap: () async {
+                Navigator.pop(context);
+                Share.share(
+                    "${"FRASE_TO_SHARE".tr()} https://linikerthiers.github.io/liniker_thiers_site/");
+              }),
+          Divider(),
+          SizedBox(
+            height: 10,
+          ),
+          InkWell(
             child: Container(
                 padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                 width: double.infinity,
@@ -314,7 +337,8 @@ class CustomDrawer extends StatelessWidget {
                   ],
                 )),
             onTap: () async {
-              await launchUrl(Uri.parse("google.navigation:q=Buffalo NY&mode=d"));
+              await launchUrl(
+                  Uri.parse("google.navigation:q=Buffalo NY&mode=d"));
               Navigator.pop(context);
             },
           ),

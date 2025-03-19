@@ -2,5 +2,7 @@
     "CONSULTA_CEP": "Consulta de CEP",
     "STATUS_BATERIA": "Status da Bateria",
     "ABRIR_NAVEGADOR": "Abrir Navegador",
-    "ABRIR_GOOGLE_MAPS": "Abrir no Google Maps"
+    "ABRIR_GOOGLE_MAPS": "Abrir no Google Maps",
+    "COMPARTILHAR": "Compartilhar",
+    "FRASE_TO_SHARE": "Olha esse site, que legal"
 }
