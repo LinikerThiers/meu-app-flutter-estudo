@@ -1,11 +1,23 @@
 {
     "CONSULTA_CEP": "Zip Code Query",
+    "DADOS_CADASTRAIS": "Registration",
+    "CONFIGURACOES": "Settings",
+    "TERMO_DE_USO": "Terms of use and privacy",
+    "GERADOR_DE_NUMEROS": "Number Generator",
+    "POSTS": "Posts",
+    "HEROIS": "Heroes",
+    "TAREFAS_HTTP": "HTTP Tasks",
+    "AUTO_SIZED_TEXT": "Auto Size Text",
+    "LINGUAGEM": "Language",
+    "SAIR": "Logout",
     "STATUS_BATERIA": "Battery Status",
     "ABRIR_NAVEGADOR": "Open Browser",
     "ABRIR_GOOGLE_MAPS": "Open in Google Maps",
     "COMPARTILHAR": "To share",
     "FRASE_TO_SHARE": "Check out this site, how cool",
     "INFO_PACOTE": "Package Information",
-    "INFORMACOES_DISPOSITIVO": "Device Information"
+    "INFORMACOES_DISPOSITIVO": "Device Information",
+    "CONNECTIVITY_TITLE_PAGE": "Connectivity",
+    "VERIFICAR_CONEXAO_BUTTON": "Check Connection"
 
 }

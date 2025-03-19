@@ -1,10 +1,23 @@
 {
     "CONSULTA_CEP": "Consulta de CEP",
+    "DADOS_CADASTRAIS": "Dados Cadastrais",
+    "CONFIGURACOES": "Configurações",
+    "TERMO_DE_USO": "Termo de uso e privacidade",
+    "GERADOR_DE_NUMEROS": "Gerador de Números",
+    "POSTS": "Postagens",
+    "HEROIS": "Heróis",
+    "TAREFAS_HTTP": "Tarefas HTTP",
     "STATUS_BATERIA": "Status da Bateria",
+    "AUTO_SIZED_TEXT": "Tamanho de Texto Automático",
+    "LINGUAGEM": "Linguagem",
+    "SAIR": "Sair",
     "ABRIR_NAVEGADOR": "Abrir Navegador",
     "ABRIR_GOOGLE_MAPS": "Abrir no Google Maps",
     "COMPARTILHAR": "Compartilhar",
     "FRASE_TO_SHARE": "Olha esse site, que legal",
     "INFO_PACOTE": "Informações do Pacote",
-    "INFORMACOES_DISPOSITIVO": "Informações Dispositivo"
+    "INFORMACOES_DISPOSITIVO": "Informações Dispositivo",
+    "CONNECTIVITY_TITLE_PAGE": "Conectividade",
+    "VERIFICAR_CONEXAO_BUTTON": "Verificar Conexão"
+
 }

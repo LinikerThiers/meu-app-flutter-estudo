@@ -9,6 +9,7 @@ import 'package:trilhaapp/pages/auto_size_text_page.dart';
 import 'package:trilhaapp/pages/battery/battery_page.dart';
 import 'package:trilhaapp/pages/characters/characters_page.dart';
 import 'package:trilhaapp/pages/configuracoes/configuracoes_hive_page.dart';
+import 'package:trilhaapp/pages/connectivity_plus/connectivity_plus_page.dart';
 import 'package:trilhaapp/pages/dados_cadastrais/dados_cadastrais_hive_page.dart';
 // import 'package:trilhaapp/pages/configuracoes/configuracoes_shared_preferences_page.dart';
 // import 'package:trilhaapp/pages/dados_cadastrais/dados_cadastrais_page.dart';
@@ -82,7 +83,7 @@ class CustomDrawer extends StatelessWidget {
                     SizedBox(
                       width: 5,
                     ),
-                    Text("Dados Cadastrais"),
+                    Text("DADOS_CADASTRAIS".tr()),
                   ],
                 )),
             onTap: () {
@@ -107,7 +108,7 @@ class CustomDrawer extends StatelessWidget {
                     SizedBox(
                       width: 5,
                     ),
-                    Text("Configurações"),
+                    Text("CONFIGURACOES".tr()),
                   ],
                 )),
             onTap: () {
@@ -130,7 +131,7 @@ class CustomDrawer extends StatelessWidget {
                     SizedBox(
                       width: 5,
                     ),
-                    Text("Termo de uso e privacidade"),
+                    Text("TERMO_DE_USO".tr()),
                   ],
                 )),
             onTap: () {
@@ -143,7 +144,7 @@ class CustomDrawer extends StatelessWidget {
                       child: Column(
                         children: [
                           Text(
-                            "Termo de uso e privacidade",
+                            "TERMO_DE_USO".tr(),
                             style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
@@ -177,7 +178,7 @@ class CustomDrawer extends StatelessWidget {
                     SizedBox(
                       width: 5,
                     ),
-                    Text("Gerador de Números"),
+                    Text("GERADOR_DE_NUMEROS".tr()),
                   ],
                 )),
             onTap: () {
@@ -202,7 +203,7 @@ class CustomDrawer extends StatelessWidget {
                     SizedBox(
                       width: 5,
                     ),
-                    Text("Posts"),
+                    Text("POSTS".tr()),
                   ],
                 )),
             onTap: () {
@@ -225,7 +226,7 @@ class CustomDrawer extends StatelessWidget {
                     SizedBox(
                       width: 5,
                     ),
-                    Text("Herois"),
+                    Text("HEROIS".tr()),
                   ],
                 )),
             onTap: () async {
@@ -248,7 +249,7 @@ class CustomDrawer extends StatelessWidget {
                     SizedBox(
                       width: 5,
                     ),
-                    Text("Tarefas HTTP"),
+                    Text("TAREFAS_HTTP".tr()),
                   ],
                 )),
             onTap: () async {
@@ -403,6 +404,28 @@ class CustomDrawer extends StatelessWidget {
                   width: double.infinity,
                   child: Row(
                     children: [
+                      FaIcon(FontAwesomeIcons.wifi),
+                      SizedBox(
+                        width: 5,
+                      ),
+                      Text("CONNECTIVITY_TITLE_PAGE".tr()),
+                    ],
+                  )),
+              onTap: () async {
+                Navigator.pop(context);
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (bc) => ConnectivityPlusPage()));
+              }),
+          Divider(),
+          SizedBox(
+            height: 10,
+          ),
+          InkWell(
+              child: Container(
+                  padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                  width: double.infinity,
+                  child: Row(
+                    children: [
                       Icon(Icons.battery_charging_full),
                       SizedBox(
                         width: 5,
@@ -455,7 +478,7 @@ class CustomDrawer extends StatelessWidget {
                     SizedBox(
                       width: 5,
                     ),
-                    Text("Auto Sized Text"),
+                    Text("AUTO_SIZED_TEXT".tr()),
                   ],
                 )),
             onTap: () async {
@@ -519,7 +542,7 @@ class CustomDrawer extends StatelessWidget {
                     SizedBox(
                       width: 5,
                     ),
-                    Text("Linguagem"),
+                    Text("LINGUAGEM".tr()),
                   ],
                 )),
             onTap: () async {
@@ -545,7 +568,7 @@ class CustomDrawer extends StatelessWidget {
                     SizedBox(
                       width: 5,
                     ),
-                    Text("Sair"),
+                    Text("SAIR".tr()),
                   ],
                 )),
             onTap: () {
