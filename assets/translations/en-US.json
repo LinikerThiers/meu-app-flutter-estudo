@@ -1,4 +1,6 @@
 {
     "CONSULTA_CEP": "Zip Code Query",
-    "STATUS_BATERIA": "Battery Status"
+    "STATUS_BATERIA": "Battery Status",
+    "ABRIR_NAVEGADOR": "Open Browser",
+    "ABRIR_GOOGLE_MAPS": "Open in Google Maps"
 }

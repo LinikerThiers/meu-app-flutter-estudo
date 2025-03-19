@@ -15,6 +15,7 @@ import 'package:trilhaapp/pages/tarefa_page/tarefa_http_page.dart';
 // import 'package:trilhaapp/pages/numeros_aleatorios/numeros_aleatorios_shared_preferences_page.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({super.key});
@@ -260,19 +261,41 @@ class CustomDrawer extends StatelessWidget {
                 width: double.infinity,
                 child: Row(
                   children: [
-                    Icon(Icons.battery_charging_full),
+                    Icon(Icons.language),
                     SizedBox(
                       width: 5,
                     ),
-                    Text("STATUS_BATERIA".tr()),
+                    Text("ABRIR_NAVEGADOR".tr()),
                   ],
                 )),
             onTap: () async {
+              await launchUrl(Uri.parse(
+                  "https://linikerthiers.github.io/liniker_thiers_site/"));
               Navigator.pop(context);
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (bc) => BatteryPage()));
             },
           ),
+          Divider(),
+          SizedBox(
+            height: 10,
+          ),
+          InkWell(
+              child: Container(
+                  padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                  width: double.infinity,
+                  child: Row(
+                    children: [
+                      Icon(Icons.battery_charging_full),
+                      SizedBox(
+                        width: 5,
+                      ),
+                      Text("STATUS_BATERIA".tr()),
+                    ],
+                  )),
+              onTap: () async {
+                Navigator.pop(context);
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (bc) => BatteryPage()));
+              }),
           Divider(),
           SizedBox(
             height: 10,
@@ -283,17 +306,15 @@ class CustomDrawer extends StatelessWidget {
                 width: double.infinity,
                 child: Row(
                   children: [
-                    FaIcon(
-                      FontAwesomeIcons.userGraduate,
-                      size: 20,
-                    ),
+                    FaIcon(FontAwesomeIcons.mapLocationDot),
                     SizedBox(
                       width: 5,
                     ),
-                    Text("Opção 1"),
+                    Text("ABRIR_GOOGLE_MAPS".tr()),
                   ],
                 )),
             onTap: () async {
+              await launchUrl(Uri.parse("google.navigation:q=Buffalo NY&mode=d"));
               Navigator.pop(context);
             },
           ),
