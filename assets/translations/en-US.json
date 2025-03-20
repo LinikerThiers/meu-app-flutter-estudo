@@ -18,6 +18,7 @@
     "INFO_PACOTE": "Package Information",
     "INFORMACOES_DISPOSITIVO": "Device Information",
     "CONNECTIVITY_TITLE_PAGE": "Connectivity",
-    "VERIFICAR_CONEXAO_BUTTON": "Check Connection"
+    "VERIFICAR_CONEXAO_BUTTON": "Check Connection",
+    "OBTER_POSICAO": "Get Position"
 
 }

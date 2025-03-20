@@ -11,6 +11,7 @@ import 'package:trilhaapp/pages/characters/characters_page.dart';
 import 'package:trilhaapp/pages/configuracoes/configuracoes_hive_page.dart';
 import 'package:trilhaapp/pages/connectivity_plus/connectivity_plus_page.dart';
 import 'package:trilhaapp/pages/dados_cadastrais/dados_cadastrais_hive_page.dart';
+import 'package:trilhaapp/pages/geolocator/geolocator_page.dart';
 // import 'package:trilhaapp/pages/configuracoes/configuracoes_shared_preferences_page.dart';
 // import 'package:trilhaapp/pages/dados_cadastrais/dados_cadastrais_page.dart';
 import 'package:trilhaapp/pages/login_page.dart';
@@ -485,6 +486,32 @@ class CustomDrawer extends StatelessWidget {
               Navigator.pop(context);
               Navigator.push(context,
                   MaterialPageRoute(builder: (bc) => AutoSizeTextPage()));
+            },
+          ),
+          Divider(),
+          SizedBox(
+            height: 10,
+          ),
+          InkWell(
+            child: Container(
+                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                width: double.infinity,
+                child: Row(
+                  children: [
+                    FaIcon(
+                      FontAwesomeIcons.mapLocationDot,
+                      size: 20,
+                    ),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Text("GPS"),
+                  ],
+                )),
+            onTap: () async {
+              Navigator.pop(context);
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (bc) => GeolocatorPage()));
             },
           ),
           Divider(),
