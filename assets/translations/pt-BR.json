@@ -2,6 +2,7 @@
     "CONSULTA_CEP": "Consulta de CEP",
     "DADOS_CADASTRAIS": "Dados Cadastrais",
     "CONFIGURACOES": "Configurações",
+    "CAMERA": "Camera",
     "TERMO_DE_USO": "Termo de uso e privacidade",
     "GERADOR_DE_NUMEROS": "Gerador de Números",
     "POSTS": "Postagens",
@@ -19,6 +20,7 @@
     "INFORMACOES_DISPOSITIVO": "Informações Dispositivo",
     "CONNECTIVITY_TITLE_PAGE": "Conectividade",
     "VERIFICAR_CONEXAO_BUTTON": "Verificar Conexão",
-    "OBTER_POSICAO": "Obter Posição"
+    "OBTER_POSICAO": "Obter Posição",
+    "GALERIA": "Galeria"
 
 }

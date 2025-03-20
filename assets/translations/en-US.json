@@ -2,6 +2,7 @@
     "CONSULTA_CEP": "Zip Code Query",
     "DADOS_CADASTRAIS": "Registration",
     "CONFIGURACOES": "Settings",
+    "CAMERA": "Camera",
     "TERMO_DE_USO": "Terms of use and privacy",
     "GERADOR_DE_NUMEROS": "Number Generator",
     "POSTS": "Posts",
@@ -19,6 +20,7 @@
     "INFORMACOES_DISPOSITIVO": "Device Information",
     "CONNECTIVITY_TITLE_PAGE": "Connectivity",
     "VERIFICAR_CONEXAO_BUTTON": "Check Connection",
-    "OBTER_POSICAO": "Get Position"
+    "OBTER_POSICAO": "Get Position",
+    "GALERIA": "Gallery"
 
 }

@@ -5,8 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:trilhaapp/pages/auto_size_text_page.dart';
 import 'package:trilhaapp/pages/battery/battery_page.dart';
+import 'package:trilhaapp/pages/camera/camera_page.dart';
 import 'package:trilhaapp/pages/characters/characters_page.dart';
 import 'package:trilhaapp/pages/configuracoes/configuracoes_hive_page.dart';
 import 'package:trilhaapp/pages/connectivity_plus/connectivity_plus_page.dart';
@@ -25,8 +27,32 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
 import 'package:device_info_plus/device_info_plus.dart';
 
-class CustomDrawer extends StatelessWidget {
+class CustomDrawer extends StatefulWidget {
   const CustomDrawer({super.key});
+
+  @override
+  State<CustomDrawer> createState() => _CustomDrawerState();
+}
+
+class _CustomDrawerState extends State<CustomDrawer> {
+  File? _profileImage;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadProfileImage();
+  }
+
+  Future<void> _loadProfileImage() async {
+    final prefs = await SharedPreferences.getInstance();
+    String? imagePath = prefs.getString("profile_image");
+
+    if (imagePath != null) {
+      setState(() {
+        _profileImage = File(imagePath);
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -69,7 +95,10 @@ class CustomDrawer extends StatelessWidget {
             child: UserAccountsDrawerHeader(
                 decoration: BoxDecoration(color: Colors.purple),
                 currentAccountPicture: CircleAvatar(
-                  backgroundImage: AssetImage("lib/images/foto_perfil_1.png"),
+                  backgroundImage: _profileImage != null
+                      ? FileImage(_profileImage!) // Exibe a imagem salva
+                      : AssetImage("lib/images/foto_perfil_1.png")
+                          as ImageProvider,
                 ),
                 accountName: Text("Liniker Thiers"),
                 accountEmail: Text("email@email.com")),
@@ -116,6 +145,29 @@ class CustomDrawer extends StatelessWidget {
               Navigator.pop(context);
               Navigator.push(context,
                   MaterialPageRoute(builder: (bc) => ConfiguracoesHivePage()));
+            },
+          ),
+          Divider(),
+          SizedBox(
+            height: 10,
+          ),
+          InkWell(
+            child: Container(
+                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                width: double.infinity,
+                child: Row(
+                  children: [
+                    Icon(Icons.camera_alt),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Text("CAMERA".tr()),
+                  ],
+                )),
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (bc) => CameraPage()));
             },
           ),
           Divider(),
@@ -414,8 +466,8 @@ class CustomDrawer extends StatelessWidget {
                   )),
               onTap: () async {
                 Navigator.pop(context);
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (bc) => ConnectivityPlusPage()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (bc) => ConnectivityPlusPage()));
               }),
           Divider(),
           SizedBox(
