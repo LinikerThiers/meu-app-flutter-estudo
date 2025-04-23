@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 // import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:trilhaapp/pages/card_page.dart';
 import 'package:trilhaapp/pages/image_assets.dart';
@@ -8,6 +9,7 @@ import 'package:trilhaapp/pages/list_view_v.dart';
 import 'package:trilhaapp/pages/percent_indicator_page.dart';
 // import 'package:trilhaapp/pages/tarefa_page/tarefa_sqlite_page.dart';
 import 'package:trilhaapp/pages/consulta_cep.dart';
+import 'package:trilhaapp/service/dark_mode_service.dart';
 import 'package:trilhaapp/shared/widgets/custom_drawer.dart';
 // import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 
@@ -35,6 +37,7 @@ class _MainPageState extends State<MainPage> {
   int posicaoPagina = 0;
   @override
   Widget build(BuildContext context) {
+    // var darkModeService = Provider.of<DarkModeService>(context);
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -44,6 +47,18 @@ class _MainPageState extends State<MainPage> {
               color: Colors.white,
             ),
           ),
+          actions: [
+            Center(child: Text("Dark Mode")),
+            Consumer<DarkModeService>(
+              builder: (_, darkModeService, widget) {
+                return Switch(
+                    value: darkModeService.darkMode,
+                    onChanged: (bool value) {
+                      darkModeService.darkMode = !darkModeService.darkMode;
+                    });
+              }
+            )
+          ],
           backgroundColor: Theme.of(context).primaryColor,
           iconTheme: IconThemeData(color: Colors.white),
         ),
