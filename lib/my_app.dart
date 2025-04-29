@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 // import 'package:trilhaapp/pages/login_page.dart';
 import 'package:trilhaapp/pages/splash_screen/splash_screen_delay_page.dart';
+import 'package:trilhaapp/service/contador_service.dart';
 import 'package:trilhaapp/service/dark_mode_service.dart';
 // import 'package:trilhaapp/pages/splash_screen/splash_screen_page.dart';
 
@@ -16,7 +17,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider<DarkModeService>(create: (_) => DarkModeService())
+        ChangeNotifierProvider<DarkModeService>(create: (_) => DarkModeService()),
+        ChangeNotifierProvider<ContadorService>(create: (_) => ContadorService()),
       ],
       child: Consumer<DarkModeService>(
               builder: (_, darkModeService, widget) {

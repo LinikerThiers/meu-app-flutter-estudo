@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 // import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:trilhaapp/pages/card_page.dart';
+import 'package:trilhaapp/pages/contador/contador_page.dart';
 import 'package:trilhaapp/pages/image_assets.dart';
 import 'package:trilhaapp/pages/list_view_horizontal_page.dart';
 import 'package:trilhaapp/pages/list_view_v.dart';
@@ -76,6 +77,7 @@ class _MainPageState extends State<MainPage> {
                   debugPrint(value.toString());
                 }, //pode vizualizar páginas arrastando
                 children: [
+                  ContadorPage(),
                   ConsultaCEP(),
                   CardPage(),
                   ImageAssetsPage(),
@@ -93,6 +95,8 @@ class _MainPageState extends State<MainPage> {
                 },
                 currentIndex: posicaoPagina,
                 items: [
+                  BottomNavigationBarItem(
+                      label: "Contador", icon: Icon(Icons.add)),
                   BottomNavigationBarItem(
                       label: "HTTP", icon: Icon(Icons.place)),
                   BottomNavigationBarItem(
