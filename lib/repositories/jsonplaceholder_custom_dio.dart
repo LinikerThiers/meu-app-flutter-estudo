@@ -7,5 +7,10 @@ class JsonPlaceholderCustomDio {
 
   JsonPlaceholderCustomDio() {
     _dio.options.baseUrl = "https://jsonplaceholder.typicode.com";
+
+    _dio.options.headers = {
+      'Accept': 'application/json',
+      'User-Agent': 'FlutterApp/1.0',
+  };
   }
 }
