@@ -1,5 +1,5 @@
 import 'package:trilhaapp/model/comment_model.dart';
-import 'package:trilhaapp/repositories/comments/comments_repository.dart';
+import 'package:trilhaapp/repositories/comments_repository.dart';
 import 'package:trilhaapp/repositories/jsonplaceholder_custom_dio.dart';
 
 class CommentsDioRepository implements CommentsRepository {

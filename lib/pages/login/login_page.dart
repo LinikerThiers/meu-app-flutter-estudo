@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:trilhaapp/pages/main_page.dart';
+import 'package:trilhaapp/pages/main/main_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:trilhaapp/model/comment_model.dart';
-import 'package:trilhaapp/repositories/comments/comments_repository.dart';
+import 'package:trilhaapp/repositories/comments_repository.dart';
 // import 'package:trilhaapp/repositories/comments/impl/comments_dio_repository.dart';
 
 import '../main.dart';

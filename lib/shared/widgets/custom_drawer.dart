@@ -16,7 +16,7 @@ import 'package:trilhaapp/pages/dados_cadastrais/dados_cadastrais_hive_page.dart
 import 'package:trilhaapp/pages/geolocator/geolocator_page.dart';
 // import 'package:trilhaapp/pages/configuracoes/configuracoes_shared_preferences_page.dart';
 // import 'package:trilhaapp/pages/dados_cadastrais/dados_cadastrais_page.dart';
-import 'package:trilhaapp/pages/login_page.dart';
+import 'package:trilhaapp/pages/login/login_page.dart';
 import 'package:trilhaapp/pages/numeros_aleatorios/numeros_aleatorios_hive_page%20copy.dart';
 import 'package:trilhaapp/pages/posts_page.dart';
 import 'package:trilhaapp/pages/tarefa_page/tarefa_http_page.dart';
